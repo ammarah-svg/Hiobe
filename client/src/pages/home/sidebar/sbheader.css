@@ -1,0 +1,16 @@
+
+
+.threedots{
+    visibility: hidden;
+   
+}
+
+.dots-icon{
+    cursor: pointer;
+   
+}
+
+.threedots{
+    visibility: visible;
+   
+}

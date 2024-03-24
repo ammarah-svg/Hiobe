@@ -18,7 +18,7 @@ const { Server } = require('socket.io');
 
 const server = http.createServer(app);
 
-// create socket server
+
 
 const io = new Server(server, {
     cors: {
@@ -40,10 +40,10 @@ io.on("connection", (socket) => {
  
 
     socket.on("send_message", (data) => {
-        // console.log(data)
+        console.log(data)
         socket.to(data.roomID).emit('received_message', data)
 
-        // Emit "received_message" event to all users in the room
+        
     });
 
 });
