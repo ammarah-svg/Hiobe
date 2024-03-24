@@ -1,6 +1,6 @@
 const AsyncHandler = require('express-async-handler')
 const User = require('../models/userModel')
-
+const bcrypt = require('bcrypt')
 
 const registerUser = AsyncHandler(async (req, res) => {
     // get the data from the frontend
@@ -13,7 +13,7 @@ const registerUser = AsyncHandler(async (req, res) => {
 
 
 
-    const isUserPresent = await User.findOne({ email })
+const isUserPresent = await User.findOne({ email })
     // if user is present, throw an error
     if (isUserPresent) {
         res.status(400);
@@ -45,7 +45,7 @@ const loginUser = AsyncHandler(async (req, res) => {
     }
 
     // check if email/user exists
-    const userExists = await User.findOne({ email });
+const userExists = await User.findOne({ email });
     if (!userExists) {
         res.status(404);
         throw new Error('User not present');
@@ -61,13 +61,26 @@ const loginUser = AsyncHandler(async (req, res) => {
         }
     }
 
-    // check if user exists
+        //  get the user
+
+
+       
 
 })
+
+// get the users
+
+const getUsers = AsyncHandler(async (req, res) => {
+    const users = await User.find();
+    res.send(users)
+})
+
+
 
 
 module.exports = {
     registerUser,
-    loginUser
+    loginUser,
+    getUsers
 }
 
